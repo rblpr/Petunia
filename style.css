@@ -8,9 +8,17 @@ canvas {
     display: block;
 }
 
+
 .buttons,
 .buttons2 {
     display: none;
+}
+
+.buttons,
+.buttons2 {
+    background: white;
+    display: flex;
+    justify-content: space-between;
 }
 
 .buttons div,
@@ -27,7 +35,6 @@ canvas {
         background: white;
         display: flex;
         justify-content: space-between;
-        /*padding: 0 2rem;*/
     }
 
 }
