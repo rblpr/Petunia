@@ -7,23 +7,27 @@ class Body {
       this.color = color(220);
       this.texture = options ? options.texture : null;
       this.invisible = false;
+      this.textureH = h;
   
       
       this.jumping = false;
       this.attacking = false;
+      this.crouching = false;
       this.step = 0;
       this.runAnimation = options ? options.runAnimation: null;
-      this.jumpAnimation = options ? options.jumpAnimation: null;
+      this.jumpTexture = options ? options.jumpTexture: null;
+      this.crouchTexture = options ? options.crouchTexture: null;
+      
       this.attackAnimation = options ? options.attackAnimation: null;
       
     }
     
     show() {
-        if(this.invisible) return;
+      if(this.invisible) return;
       if(this.texture) {
         push();
         scale(1,-1)
-        image(this.texture,this.pos.x,-this.pos.y - this.h, this.w,this.h)
+        image(this.texture,this.pos.x,-this.pos.y - this.textureH, this.w,this.textureH)
         pop();
       } else {
         fill(this.color);

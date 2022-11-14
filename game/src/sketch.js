@@ -1,6 +1,3 @@
-let jumping = false;
-let crouching = false;
-
 let score = 0;
 
 let groundW;
@@ -22,34 +19,42 @@ let bodies = [];
 const ATKBUFFERTIME = 300;
 let atkBuffer = ATKBUFFERTIME;
 
-let mati1;
-let mati2;
+let mati = {
+  run: [],
+  jump: null,
+  crouch: null,
+  atk: []
+};
 function preload() {
-  /* lucasF1 = loadImage("lucas1.jpeg");
-  lucasF2 = loadImage("lucas2.jpeg"); */
-  mati1 = loadImage("src/assests/mati-cam-1.png");
-  mati2 = loadImage("src/assests/mati-cam-2.png");
+  mati.run.push(loadImage("src/assets/mati-cam-1.png"));
+  mati.run.push(loadImage("src/assets/mati-cam-2.png"));
+  mati.jump = loadImage("src/assets/mati-jump.png");
+  mati.crouch = loadImage("src/assets/mati-crouch.png")
+  mati.atk.push(loadImage("src/assets/mati-atk-1.png"))
 
-  backgroundImg = loadImage("src/assests/sfondo1.png");
+  backgroundImg = loadImage("src/assets/sfondo1.png");
 
 }
 
 function setup() {
-  createCanvas(innerWidth, 400);
+  createCanvas(innerWidth , innerHeight / 2);
   groundW = 600;
   groundH = 30;
   let ground = new Body(0, 0, groundW, groundH);
   //ground.invisible = true;
 
   let options = {
-    texture: mati1,
-    runAnimation: [mati1, mati2]
+    texture: mati.run[0],
+    runAnimation: mati.run,
+    jumpTexture: mati.jump,
+    crouchTexture: mati.crouch,
+    attackAnimation: mati.atk
   }
   player = new Body(0, ground.h, playerW, playerH, options);
   bodies.push(ground, player);
 
 
-  setInterval(changeSprite, 200);
+  setInterval(changeSprite, 100);
 
 }
 
@@ -105,7 +110,7 @@ function draw() {
 }
 
 function keyPressed() {
-  if (key == " " && !jumping) {
+  if (key == " " && !player.jumping) {
     handleJump();
   }
 
@@ -157,9 +162,4 @@ function getRandomObstacles() {
     new Body(x3 + groundW * groundsCount, groundH + 90, obsW, 40),
   ];
   return [random(obs1), random(obs2), random(obs3)];
-}
-
-function changeSprite() {
-  player.step++;
-  player.texture = player.runAnimation[player.step % player.runAnimation.length]
 }
