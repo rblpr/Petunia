@@ -31,7 +31,7 @@ function preload() {
   mati2 = loadImage("src/assests/mati-cam-2.png");
 
   backgroundImg = loadImage("src/assests/sfondo1.png");
-  
+
 }
 
 function setup() {
@@ -40,7 +40,7 @@ function setup() {
   groundH = 30;
   let ground = new Body(0, 0, groundW, groundH);
   //ground.invisible = true;
-  
+
   let options = {
     texture: mati1,
     runAnimation: [mati1, mati2]
@@ -48,7 +48,7 @@ function setup() {
   player = new Body(0, ground.h, playerW, playerH, options);
   bodies.push(ground, player);
 
-  
+
   setInterval(changeSprite, 200);
 
 }
@@ -57,30 +57,30 @@ function draw() {
   background(255);
 
   //image(backgroundImg, 0, 0, width, height)
-    
+
   player.pos.x += playerSpeed;
   score += playerSpeed;
-  
+
   if (atkBuffer > 0)
     atkBuffer -= 1;
-  
+
   fill(0)
-  text("Punteggio: " + nf(round(score),10,0), 30,30)
+  text("Punteggio: " + nf(round(score), 10, 0), 30, 30)
 
   push();
   rectMode(CENTER)
   textAlign(CENTER, CENTER);
   textSize(32);
-  text(location.search.split("=")[1].replace("%20", " "), width/2, 50);
+  text(location.search.split("=")[1].replace("%20", " "), width / 2, 50);
   pop();
-  
-  fill(255,atkBuffer == 0 ? 255 : 0,0);
-  rect(width - 150, 20, map(atkBuffer,0,ATKBUFFERTIME,100,0),20);
-  
+
+  fill(255, atkBuffer == 0 ? 255 : 0, 0);
+  rect(width - 150, 20, map(atkBuffer, 0, ATKBUFFERTIME, 100, 0), 20);
+
   translate(-player.pos.x + leftPadding, height);
   scale(1, -1);
 
-  if(frameCount % 100 == 0 && playerSpeed <= 10 ) 
+  if (frameCount % 100 == 0 && playerSpeed <= 10)
     playerSpeed += 0.2;
 
 
@@ -112,8 +112,8 @@ function keyPressed() {
   if (key == "s") {
     handleCrouch();
   }
-  
-  if(key == "e") {
+
+  if (key == "e") {
     handleAttack();
   }
 }
@@ -126,9 +126,9 @@ function keyReleased() {
 
 
 function expandWorld() {
-    let newGround = new Body(groundW * groundsCount, 0, groundW, 30)
-    newGround.invisible = true;
-  //bodies.push(newGround);
+  let newGround = new Body(groundW * groundsCount, 0, groundW, 30)
+  //newGround.invisible = true;
+  bodies.push(newGround);
   let o = getRandomObstacles();
   bodies.push(o[0], o[1], o[2]);
   obstacles.push(o[0], o[1], o[2]);
