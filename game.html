@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <main></main>
+    <div class="buttons">
+      <div
+        onselectstart="return false"
+        ontouchstart="handleCrouch()"
+        ontouchend="handleEndCrouch()"
+      >
+        <p>Accucciati</p>
+      </div>
+      <div onselectstart="return false" ontouchstart="handleJump()">
+        <p>Salta</p>
+      </div>
+    </div>
+    <div class="buttons2">
+      <div onselectstart="return false" ontouchstart="handleAttack()">
+        <p>Attacca</p>
+      </div>
+    </div>
+    <script src="src/sketch.js"></script>
+    <script src="src/Body.js"></script>
+    <script src="src/animations.js"></script>
+    
+  </body>
+</html>

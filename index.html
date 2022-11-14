@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Petunia Game</title>
+</head>
+
+<body>
+    <div class="container w-75 m-auto mt-5">
+        <h1 class="text-center">Petunia Game</h1>
+        <h3 class="text-center">Seleziona personaggio</h3>
+        <div class="d-flex w-50 m-auto">
+            <button class="btn btn-primary w-25 m-1">Venus</button>
+            <button class="btn btn-primary w-25 m-1">Matipies</button>
+            <button class="btn btn-primary w-25 m-1">Lolita</button>
+            <button class="btn btn-primary w-25 m-1">Mr. Ghini</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.querySelectorAll("button").forEach(btn => {
+            btn.addEventListener("click", e => {
+                location.href = "/game.html?player="+ btn.textContent;
+            })
+        })
+    </script>
+</body>
+
+</html>

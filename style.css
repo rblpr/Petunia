@@ -1,0 +1,33 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    display: block;
+}
+
+.buttons,
+.buttons2 {
+    display: none;
+}
+
+.buttons div,
+.buttons2 div {
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .buttons,
+    .buttons2 {
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        /*padding: 0 2rem;*/
+    }
+
+}
