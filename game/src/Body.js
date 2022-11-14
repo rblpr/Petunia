@@ -4,7 +4,7 @@ class Body {
       this.pos = createVector(x,y);
       this.w = w;
       this.h = h;
-      this.color = color(220);
+      this.color = color(255,192,203);
       this.texture = options ? options.texture : null;
       this.invisible = false;
       this.textureH = h;
