@@ -35,7 +35,7 @@ function preload() {
   animations.crouch = loadImage("src/assets/" + queryname +"/crouch.png")
   animations.atk.push(loadImage("src/assets/" + queryname +"/atk-1.png"))
 
-  for(let i = 1; i <= 4; i++){
+  for(let i = 1; i <= 1; i++){
     backgroundImages.push(loadImage("src/assets/bgs/Fluid World " + i + ".png"));
   }
 }
@@ -148,6 +148,7 @@ function expandWorld(i) {
   //let newGround = new Body(groundW * groundsCount, 0, groundW, 30)
   //newGround.invisible = true;
   //bodies.push(newGround);
+  backsCount = 0;
   let newBack = new Body(groundW * (groundsCount + i), 0, groundW, 400, {texture: backgroundImages[backsCount++]});
   backsCount %= 4;
   bodies.splice(0,0,newBack);
