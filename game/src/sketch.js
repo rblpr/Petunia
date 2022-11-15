@@ -38,7 +38,6 @@ function preload() {
   for(let i = 1; i <= 4; i++){
     backgroundImages.push(loadImage("src/assets/bgs/Fluid World " + i + ".png"));
   }
-
 }
 
 function setup() {
