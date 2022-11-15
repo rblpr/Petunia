@@ -19,18 +19,20 @@ let bodies = [];
 const ATKBUFFERTIME = 300;
 let atkBuffer = ATKBUFFERTIME;
 
-let mati = {
+let animations = {
   run: [],
   jump: null,
   crouch: null,
   atk: []
 };
 function preload() {
-  mati.run.push(loadImage("src/assets/mati-cam-1.png"));
-  mati.run.push(loadImage("src/assets/mati-cam-2.png"));
-  mati.jump = loadImage("src/assets/mati-jump.png");
-  mati.crouch = loadImage("src/assets/mati-crouch.png")
-  mati.atk.push(loadImage("src/assets/mati-atk-1.png"))
+  let queryname = location.search.split("=")[1].toLowerCase();
+  if(queryname == "mr.%20ghini") queryname = "pit"
+  animations.run.push(loadImage("src/assets/" + queryname +"/cam-1.png"));
+  animations.run.push(loadImage("src/assets/" + queryname +"/cam-2.png"));
+  animations.jump = loadImage("src/assets/" + queryname +"/jump.png");
+  animations.crouch = loadImage("src/assets/" + queryname +"/crouch.png")
+  animations.atk.push(loadImage("src/assets/" + queryname +"/atk-1.png"))
 
   backgroundImg = loadImage("src/assets/sfondo1.png");
 
@@ -44,11 +46,11 @@ function setup() {
   bodies.push(newBack)
 
   let options = {
-    texture: mati.run[0],
-    runAnimation: mati.run,
-    jumpTexture: mati.jump,
-    crouchTexture: mati.crouch,
-    attackAnimation: mati.atk
+    texture: animations.run[0],
+    runAnimation: animations.run,
+    jumpTexture: animations.jump,
+    crouchTexture: animations.crouch,
+    attackAnimation: animations.atk
   }
   player = new Body(0, groundH, playerW, playerH, options);
   bodies.push(player);
