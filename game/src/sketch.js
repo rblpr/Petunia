@@ -11,7 +11,8 @@ let playerW = 64;
 let jumpSpeed = 0.02
 
 let player;
-let backgroundImg;
+let backgroundImages = [];
+let backsCount = 0;
 
 let obstacles = [];
 let bodies = [];
@@ -34,7 +35,9 @@ function preload() {
   animations.crouch = loadImage("src/assets/" + queryname +"/crouch.png")
   animations.atk.push(loadImage("src/assets/" + queryname +"/atk-1.png"))
 
-  backgroundImg = loadImage("src/assets/sfondo1.png");
+  for(let i = 1; i <= 4; i++){
+    backgroundImages.push(loadImage("src/assets/bgs/Fluid World " + i + ".png"));
+  }
 
 }
 
@@ -42,8 +45,9 @@ function setup() {
   createCanvas(innerWidth , 400);
   groundW = 600;
   groundH = 80;
-  let newBack = new Body(0, 0, groundW, 400, {texture: backgroundImg});
+  let newBack = new Body(0, 0, groundW, 400, {texture: backgroundImages[backsCount++]});
   bodies.push(newBack)
+  bodies.push(new Body(-groundW,0,groundW,400, {texture: backgroundImages[0]}))
 
   let options = {
     texture: animations.run[0],
@@ -104,18 +108,19 @@ function draw() {
   pop();
 
   
-  fill(0)
+  fill(220)
+  textSize(16);
   text("Punteggio: " + nf(round(score), 10, 0), 30, 30)
 
   push();
   rectMode(CENTER)
   textAlign(CENTER, CENTER);
-  textSize(32);
-  text(location.search.split("=")[1].replace("%20", " "), width / 2, 50);
+  textSize(24);
+  //text(location.search.split("=")[1].replace("%20", " "), width / 2, 60);
   pop();
 
   fill(255, atkBuffer == 0 ? 255 : 0, 0);
-  rect(width - 150, 20, map(atkBuffer, 0, ATKBUFFERTIME, 100, 0), 20);
+  rect(width - 150, 15, map(atkBuffer, 0, ATKBUFFERTIME, 100, 0), 20);
 
 }
 
@@ -144,7 +149,8 @@ function expandWorld(i) {
   //let newGround = new Body(groundW * groundsCount, 0, groundW, 30)
   //newGround.invisible = true;
   //bodies.push(newGround);
-  let newBack = new Body(groundW * (groundsCount + i), 0, groundW, 400, {texture: backgroundImg});
+  let newBack = new Body(groundW * (groundsCount + i), 0, groundW, 400, {texture: backgroundImages[backsCount++]});
+  backsCount %= 4;
   bodies.splice(0,0,newBack);
   let o = getRandomObstacles(i);
   bodies.push(o[0], o[1], o[2]);
